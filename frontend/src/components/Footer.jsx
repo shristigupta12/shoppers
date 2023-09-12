@@ -79,7 +79,7 @@ const Footer = () => {
   return (
     <Container>
         <Left>
-            <Logo>Shopify</Logo>
+            <Logo>Shoppers</Logo>
             <Desc>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, mollitia. Eius suscipit veritatis architecto voluptas est necessitatibus hic officiis nisi! Esse dolore, error autem dicta odit consectetur dignissimos quod laborum!
             </Desc>

@@ -76,7 +76,7 @@ const Navbar = () => {
                     <SearchIcon style={{color: 'grey', fontsize: '16px'}} />
                 </SearchContainer>
                 </Left>
-            <Center><Logo>Shopify</Logo></Center>
+            <Center><Logo>Shoppers</Logo></Center>
             <Right>
                 <MenuItem>Register</MenuItem>
                 <MenuItem>Sign in</MenuItem>
