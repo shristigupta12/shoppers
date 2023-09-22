@@ -5,11 +5,16 @@ import Footer from '../components/Footer'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {mobile} from "../responsive"
+import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";	
+import { useEffect, useState } from "react";	
+import { userRequest } from "../requestMethods";	
+import { useNavigate } from "react-router";
 
+const KEY = import.meta.env.VITE_STRIPE;	
 
-const Container = styled.div`
+const Container = styled.div``
 
-`
 const Wrapper = styled.div`
     padding: 20px;
     ${mobile({padding: "10px"})};
@@ -36,7 +41,7 @@ const TopButton = styled.button`
 const TopTexts = styled.div`
     ${mobile({display: "none"})};
 `
-const TopText = styled.div`
+const TopText = styled.span`
     text-decoration: underline;
     cursor: pointer;
     margin: 0px 10px;
@@ -148,6 +153,28 @@ const Button = styled.div`
 `
 
 const Cart = () => {
+    console.log(process)
+
+    const cart = useSelector((state) => state.cart);	
+    const [stripeToken, setStripeToken] = useState(null);	
+    const navigateTo = useNavigate();	
+    const onToken = (token) => {	
+        setStripeToken(token);	
+    };	
+    useEffect(() => {	
+        const makeRequest = async () => {	
+        try {	
+            const res = await userRequest.post("/checkout/payment", {	
+            tokenId: stripeToken.id,	
+            amount: 500,	
+            });	
+            navigateTo.push("/success", {	
+            stripeData: res.data,	
+            products: cart, });	
+        } catch {}	
+        };	
+        stripeToken && makeRequest();	
+    }, [stripeToken, cart.total, navigateTo]);
   return (
     <Container>
         <Navbar />
@@ -164,69 +191,71 @@ const Cart = () => {
             </Top>
             <Bottom>
                 <Info>
-                    <Product>
-                        <ProductDetail>
-                            <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7adsA8KN3E2EwDoLop8_vCdgP_cCECVZ5bg&usqp=CAU"></Image>
-                            <Details>
-                                <ProductName> <b>Product:</b> ALLEN SOLLY PURSE</ProductName>
-                                <ProductId> <b>ID:</b> 394857918323</ProductId>
-                                <ProductColor color="black" />
-                                <ProductSize> <b>Size:</b> M </ProductSize>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <AddIcon/>
-                                <ProductAmount>2</ProductAmount>
-                                <RemoveIcon/>
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 10</ProductPrice>
-                        </PriceDetail>
-                    </Product>
-                    <Hr/>
-                    <Product>
-                        <ProductDetail>
-                            <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwyln4ddsguCb2VYAr-ZillTjVcnm5EhlmtcM1Pm5gg-XYJAoUJmsBYG60cKLXcqRQLcg&usqp=CAU"></Image>
-                            <Details>
-                                <ProductName> <b>Product:</b> HAKURA T-SHIRT</ProductName>
-                                <ProductId> <b>ID:</b> 394857918323</ProductId>
-                                <ProductColor color="gray" />
-                                <ProductSize> <b>Size:</b> 37.5 </ProductSize>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <AddIcon/>
-                                <ProductAmount>2</ProductAmount>
-                                <RemoveIcon/>
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 30</ProductPrice>
-                        </PriceDetail>
-                    </Product>
+                    {cart.products.map((product) => (	
+                        <Product>	
+                            <ProductDetail>	
+                            <Image src={product.img} />	
+                            <Details>	
+                                <ProductName>	
+                                <b>Product:</b> {product.title}	
+                                </ProductName>	
+                                <ProductId>	
+                                <b>ID:</b> {product._id}	
+                                </ProductId>	
+                                <ProductColor color={product.color} />	
+                                <ProductSize>	
+                                <b>Size:</b> {product.size}	
+                                </ProductSize>	
+                            </Details>	
+                            </ProductDetail>	
+                            <PriceDetail>	
+                            <ProductAmountContainer>	
+                                <Add />	
+                                <ProductAmount>{product.quantity}</ProductAmount>	
+                                <Remove />	
+                            </ProductAmountContainer>	
+                            <ProductPrice>	
+                                $ {product.price * product.quantity}	
+                            </ProductPrice>	
+                            </PriceDetail>	
+                        </Product>	
+                    ))}	
+                    <Hr />
                 </Info>
                 <Summary>
-                    <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                    <SummaryItem>
-                        <SummaryItemText>Subtotal</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
-                    </SummaryItem>
-                    <SummaryItem>
-                        <SummaryItemText>Estimated Shipping</SummaryItemText>
-                        <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-                    </SummaryItem>
-                    <SummaryItem>
-                        <SummaryItemText>Shipping Discount</SummaryItemText>
-                        <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-                    </SummaryItem>
-                    <SummaryItem type="total">
-                        <SummaryItemText >Total</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
-                    </SummaryItem>
-                    <Button>CHECKOUT NOW</Button>
-                </Summary>
-            </Bottom>
+                    <SummaryTitle>ORDER SUMMARY</SummaryTitle>	
+                    <SummaryItem>	
+                    <SummaryItemText>Subtotal</SummaryItemText>	
+                    <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>	
+                    </SummaryItem>	
+                    <SummaryItem>	
+                    <SummaryItemText>Estimated Shipping</SummaryItemText>	
+                    <SummaryItemPrice>$ 5.90</SummaryItemPrice>	
+                    </SummaryItem>	
+                    <SummaryItem>	
+                    <SummaryItemText>Shipping Discount</SummaryItemText>	
+                    <SummaryItemPrice>$ -5.90</SummaryItemPrice>	
+                    </SummaryItem>	
+                    <SummaryItem type="total">	
+                    <SummaryItemText>Total</SummaryItemText>	
+                    <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>	
+                    </SummaryItem>	
+                    <StripeCheckout	
+                    name="Lama Shop"	
+                    image="https://avatars.githubusercontent.com/u/1486366?v=4"	
+                    billingAddress	
+                    shippingAddress	
+                    description={`Your total is $${cart.total}`}	
+                    amount={cart.total * 100}	
+                    token={onToken}	
+                    stripeKey={KEY}	
+                    >	
+                    <Button>CHECKOUT NOW</Button>	
+                    </StripeCheckout>	
+                </Summary>	
+            </Bottom>	
         </Wrapper>
-        <Footer/>
+        <Footer />
     </Container>
   )
 }

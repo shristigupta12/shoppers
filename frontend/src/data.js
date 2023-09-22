@@ -27,19 +27,19 @@ export const categories = [
         id: 1 ,
         img: "https://5.imimg.com/data5/XO/AE/MY-39077357/mens-check-shirts-1000x1000.jpg" ,
         title: "SHIRT STYLE",
-        cat: "women"
+        cat: "shirt"
     },
     {
         id: 2 ,
         img: "https://media1.popsugar-assets.com/files/thumbor/kLFFA3yq2JeWnR5Sv3mhN60yEC4/fit-in/728xorig/filters:format_auto-!!-:strip_icc-!!-/2022/09/07/781/n/1922564/f5a1d40a6318d89c77d9c9.67501173_/i/best-womens-loungewear-sets-and-pieces.png" ,
         title: "LOUNGE WEAR",
-        cat: "coat"
+        cat: "women"
     },
     {
         id: 3 ,
         img: "https://media.boohoo.com/i/boohoo/gzz23531_chocolate_xl?w=900&qlt=default&fmt.jp2.qlt=70&fmt=auto&sm=fit" ,
         title: "Cardigans",
-        cat: "jacket"
+        cat: "sweater"
     }
 ];
 
