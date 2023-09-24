@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import {mobile} from "../responsive"
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";	
@@ -210,9 +208,9 @@ const Cart = () => {
                             </ProductDetail>	
                             <PriceDetail>	
                             <ProductAmountContainer>	
-                                <Add />	
+                                <i class="fa-solid fa-plus"></i>
                                 <ProductAmount>{product.quantity}</ProductAmount>	
-                                <Remove />	
+                                <i class="fa-solid fa-minus"></i>	
                             </ProductAmountContainer>	
                             <ProductPrice>	
                                 $ {product.price * product.quantity}	

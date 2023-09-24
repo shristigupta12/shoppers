@@ -8,7 +8,6 @@ import {mobile} from "../responsive";
 import {useLocation} from "react-router-dom";
 import { useState } from 'react';
 
-
 const Container = styled.div`
 
 `

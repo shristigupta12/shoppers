@@ -3,8 +3,6 @@ import Navbar from "../components/Navbar"
 import Announcement from "../components/Announcement"
 import Newsletter from "../components/Newsletter"
 import Footer from "../components/Footer"
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react"
 import {mobile} from "../responsive"
 import { useLocation } from "react-router-dom";	
@@ -174,9 +172,9 @@ const Product = () => {
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
-                        <RemoveIcon onClick={() => handleQuantity("dec")} />	
+                    <i class="fa-solid fa-minus" onClick={() => handleQuantity("dec")}></i>
                         <Amount>{quantity}</Amount>	
-                        <AddIcon onClick={() => handleQuantity("inc")} />                      
+                        <i class="fa-solid fa-plus" onClick={() => handleQuantity("inc")}></i>
                     </AmountContainer>
                     <Button onClick={handleClick}>ADD TO CART</Button>	                
                     </AddContainer>

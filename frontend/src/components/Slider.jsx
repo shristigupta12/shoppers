@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+import styled from 'styled-components';;
 import { useState } from 'react';
 import { sliderItems } from '../data';
 import {mobile} from "../responsive"
@@ -89,7 +87,8 @@ const Slider = () => {
   return (
     <Container>
         <Arrow direction="left" onClick={()=>handleClick("left")}>
-            <KeyboardArrowLeftOutlinedIcon />
+            {/* <KeyboardArrowLeftOutlinedIcon /> */}
+            <i class="fa-solid fa-arrow-left"></i>
         </Arrow>
         <Wrapper slideIndex = {slideIndex}>
             {sliderItems.map(item=>(
@@ -111,7 +110,8 @@ const Slider = () => {
             ))}
         </Wrapper>
         <Arrow direction="right" onClick={()=>handleClick("right")}>
-            <KeyboardArrowRightOutlinedIcon />
+            {/* <KeyboardArrowRightOutlinedIcon /> */}
+            <i class="fa-solid fa-arrow-right"></i>
         </Arrow>
     </Container>
   )

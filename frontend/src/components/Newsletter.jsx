@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import SendIcon from '@mui/icons-material/Send';
 import {mobile} from "../responsive"
 
 const Container = styled.div`
@@ -49,7 +48,7 @@ const Newsletter = () => {
         <InputContainer>
             <Input placeholder="Your email"/>
             <Button>
-                <SendIcon/>
+                <i class="fa-regular fa-paper-plane"></i>
             </Button>
         </InputContainer>
     </Container>

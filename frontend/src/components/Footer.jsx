@@ -1,11 +1,6 @@
 import styled from "styled-components"
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import PinterestIcon from '@mui/icons-material/Pinterest';
-import RoomIcon from '@mui/icons-material/Room';
-import PhoneIcon from '@mui/icons-material/Phone';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+// import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+
 import {mobile} from "../responsive"
 
 const Container = styled.div`
@@ -85,16 +80,13 @@ const Footer = () => {
             </Desc>
             <SocialContainer>
                 <SocialIcon color="3B5999">
-                    <FacebookIcon />
+                    <i class="fa-brands fa-facebook"></i>
                 </SocialIcon>
                 <SocialIcon color="E4405F">
-                    <InstagramIcon />
+                    <i class="fa-brands fa-instagram"></i>
                 </SocialIcon>
                 <SocialIcon color="55ACEE">
-                    <TwitterIcon />
-                </SocialIcon>
-                <SocialIcon color="E60023">
-                    <PinterestIcon />
+                    <i class="fa-brands fa-twitter"></i>
                 </SocialIcon>
             </SocialContainer>
         </Left>
@@ -117,15 +109,18 @@ const Footer = () => {
         <Right>
             <Title>Contacts</Title>
             <ContactItem>
-                <RoomIcon style={{marginRight: "10px"}}/>
+                {/* <MapPin style={{marginRight: "10px"}}/> */}
+                <i class="fa-solid fa-location-dot"></i>
                 622 Dixie Path, South tukoganj 98336
             </ContactItem>
             <ContactItem>
-                <PhoneIcon style={{marginRight: "10px"}} />
+                {/* <Phone style={{marginRight: "10px"}} /> */}
+                <i class="fa-solid fa-phone"></i>
                 +1 432 56 78
             </ContactItem>
             <ContactItem>
-                <MailOutlineIcon style={{marginRight: "10px"}}/>
+                {/* <Mail style={{marginRight: "10px"}}/> */}
+                <i class="fa-regular fa-envelope"></i>
                 contact@shopify.dev
             </ContactItem>
             <Payment src="https://i.ibb.co/Qfvn4z6/payment.png"/>
