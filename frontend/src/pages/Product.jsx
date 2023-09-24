@@ -125,7 +125,9 @@ const Product = () => {
         try {	
         const res = await publicRequest.get("/products/find/" + id);	
         setProduct(res.data);	
-        } catch {}	
+        } catch {
+            console.log("error while fetching request")
+        }	
     };	
     getProduct();	
     }, [id]);	
@@ -172,9 +174,9 @@ const Product = () => {
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
-                        <Remove onClick={() => handleQuantity("dec")} />	
+                        <RemoveIcon onClick={() => handleQuantity("dec")} />	
                         <Amount>{quantity}</Amount>	
-                        <Add onClick={() => handleQuantity("inc")} />                      
+                        <AddIcon onClick={() => handleQuantity("inc")} />                      
                     </AmountContainer>
                     <Button onClick={handleClick}>ADD TO CART</Button>	                
                     </AddContainer>

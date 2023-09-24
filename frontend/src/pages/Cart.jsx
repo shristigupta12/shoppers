@@ -153,7 +153,7 @@ const Button = styled.div`
 `
 
 const Cart = () => {
-    console.log(process)
+    // console.log(process)
 
     const cart = useSelector((state) => state.cart);	
     const [stripeToken, setStripeToken] = useState(null);	

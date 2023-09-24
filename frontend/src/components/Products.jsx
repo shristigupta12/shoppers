@@ -52,8 +52,7 @@ const Products = ({cat, filters, sort}) => {
 
   return (
     <Container>
-        {cat	
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)	
+        {cat	? filteredProducts.map((item) => <Product  item={item} key={item.id} />)	
         : products	
             .slice(0, 8)	
             .map((item) => <Product item={item} key={item.id} />)}

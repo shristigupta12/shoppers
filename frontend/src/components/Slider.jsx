@@ -4,6 +4,7 @@ import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRig
 import { useState } from 'react';
 import { sliderItems } from '../data';
 import {mobile} from "../responsive"
+import {Link} from "react-router-dom"
 
 
 const Container = styled.div`
@@ -102,7 +103,9 @@ const Slider = () => {
                     <Desc>
                         {item.desc}
                     </Desc>
-                    <Button>Shop now</Button>
+                    <Link to="/products">
+                        <Button>Shop now</Button>
+                    </Link>
                     </InfoContainer>
                 </Slide>
             ))}
