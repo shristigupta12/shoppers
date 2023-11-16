@@ -2,12 +2,13 @@ import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import {mobile} from "../responsive"
+import { mobile } from "../responsive"
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";	
 import { useEffect, useState } from "react";	
 import { userRequest } from "../requestMethods";	
 import { useNavigate } from "react-router";
+import ShoppingBag from "../assets/images/shopping-bags-emoji.png"
 
 const KEY = import.meta.env.VITE_STRIPE;	
 
@@ -239,8 +240,8 @@ const Cart = () => {
                     <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>	
                     </SummaryItem>	
                     <StripeCheckout	
-                    name="Lama Shop"	
-                    image="https://avatars.githubusercontent.com/u/1486366?v=4"	
+                    name="Shoppers"	
+                    image={ShoppingBag}	
                     billingAddress	
                     shippingAddress	
                     description={`Your total is $${cart.total}`}	
